@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao{
 		sqlSession.update("UserMapper.updateUser", user);
 	}
 
-	public List<User> getUserList(Search search) throws Exception {
+	public List<User> getList(Search search) throws Exception {
 		return sqlSession.selectList("UserMapper.getUserList", search);
 	}
 

@@ -54,7 +54,7 @@ public class ProductController {
 	@RequestMapping("/getProduct.do")
 	public String getProduct( @RequestParam("prodNo") int prodNo, Model model, HttpServletRequest request ) throws Exception {
 		
-		System.out.println("/getUser.do");
+		System.out.println("/getProduct.do");
 		//Business Logic
 		Product product = productService.getProduct(prodNo);
 		//Model 과 View 연결
@@ -64,10 +64,11 @@ public class ProductController {
 		return "forward:/product/updateProduct.jsp";
 	}
 	
-	@RequestMapping("/listproduct.do")
+	@RequestMapping("/listProduct.do")
 	public String listProduct( @ModelAttribute("search") Search search, HttpServletRequest request, Model model) throws Exception {
 		
 		System.out.println("/listProduct.do");
+		System.out.println(request.getParameter("menu"));
 		
 		if(search.getCurrentPage() == 0) {
 			search.setCurrentPage(1);
@@ -75,7 +76,7 @@ public class ProductController {
 		search.setPageSize(pageSize);
 		
 		//Business logic 수행
-		Map<String, Object> map=productService.getProductList(search);
+		Map<String, Object> map=productService.getList(search);
 		
 		Page resultPage	= new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		System.out.println(resultPage);
@@ -85,34 +86,32 @@ public class ProductController {
 		model.addAttribute("resultPage", resultPage);
 		model.addAttribute("search", search);
 		model.addAttribute("menu",request.getParameter("menu"));
-		model.addAttribute("uri",request.getRequestURI());
+//		model.addAttribute("uri",request.getRequestURI());	==> pageNavigator if문 돌려보기 실패
 		
 		return "forward:/product/listProduct.jsp";
 	}
 	
-	@RequestMapping("/updateProdut.do")
-	public String updateProduct( @ModelAttribute("product") Product product, Model model, HttpSession session, HttpServletRequest request) throws Exception {
+	@RequestMapping("/updateProduct.do")
+	public String updateProduct( @ModelAttribute("product") Product product, HttpServletRequest request) throws Exception {
 		
 		System.out.println("/updateProduct.do");
 		//Business logic
-		productService.updateProduct(product);
+		productService.updateProduct(product);		
 		
-		int sessionNo=((Product)session.getAttribute("product")).getProdNo();
-		if(sessionNo == (product.getProdNo())) {
-			session.setAttribute("product", product);
-		}
+//		model.addAttribute("product", product);		
 		
-		return "forword:/getProduct.do?prodNo="+product.getProdNo()+"&menu="+request.getParameter("menu");
+		return "forward:/getProduct.do";
 	}
 	
 	@RequestMapping("/updateProductView.do")
-	public String updateProuctView( @RequestParam("prodNo") int prodNo, Model model ) throws Exception {
+	public String updateProductView( @RequestParam("prodNo") int prodNo, Model model, HttpServletRequest request ) throws Exception {
 		
 		System.out.println("/updateProductView.do");
 		//Business logic
 		Product product = productService.getProduct(prodNo);
 		//Model 과 View 연결
 		model.addAttribute("product",product);
+		model.addAttribute("menu",request.getParameter("menu"));
 		
 		return "forward:/product/updateProductView.jsp";		
 	}

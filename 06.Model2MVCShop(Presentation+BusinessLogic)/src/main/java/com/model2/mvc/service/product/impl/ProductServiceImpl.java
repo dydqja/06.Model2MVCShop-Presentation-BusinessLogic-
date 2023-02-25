@@ -47,10 +47,10 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.getProduct(prodNo);
 	}
 	
-	public Map<String , Object > getProductList(Search search) throws Exception {
+	public Map<String , Object > getList(Search search) throws Exception {
 		System.out.println("ProductServiceImpl에서 getProductList 실행됨");
 		System.out.println("search 값은 =" +search);
-		List<Product> list= productDao.getProductList(search);
+		List<Product> list= productDao.getList(search);
 		int totalCount = productDao.getTotalCount(search);
 		
 		Map<String, Object> map = new HashMap<String, Object>();

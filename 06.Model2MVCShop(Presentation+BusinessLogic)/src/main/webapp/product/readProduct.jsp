@@ -57,7 +57,7 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 				<%--<td width="105"><%=vo.getProdName()%></td> --%>
-					<td width="105">${vo.prodName}</td>
+					<td width="105">${product.prodName}</td>
 					<td></td>
 				</tr>
 			</table>
@@ -73,7 +73,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 	<%--<td class="ct_write01"><%= vo.getProdDetail() %></td>--%>
-		<td class="ct_write01">${vo.prodDetail}</td>
+		<td class="ct_write01">${product.prodDetail}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -85,7 +85,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 	<%--<td class="ct_write01"><%= vo.getManuDate() %></td> --%>
-		<td class="ct_write01">${vo.manuDate}</td>
+		<td class="ct_write01">${product.manuDate}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -96,7 +96,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 	<%--<td class="ct_write01"><%= vo.getPrice() %></td> --%>
-		<td class="ct_write01">${vo.price}</td>
+		<td class="ct_write01">${product.price}</td>
 	</tr>
 
 	<tr>
@@ -113,7 +113,7 @@
 						<img src="/images/uploadFiles/../../images/empty.GIF"/>
 					</td>
 				<%--<td class="ct_write01"><%= vo.getFileName() %></td> --%>
-					<td class="ct_write01">${vo.fileName}</td>
+					<td class="ct_write01">${product.fileName}</td>
 				</tr>
 			</table>
 		</td>

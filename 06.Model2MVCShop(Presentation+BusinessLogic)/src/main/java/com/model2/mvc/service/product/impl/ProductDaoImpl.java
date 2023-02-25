@@ -38,6 +38,7 @@ public class ProductDaoImpl implements ProductDao{
 		System.out.println("ProductDaoImpl에서 addProduct 실행됨");
 //		System.out.println("product 값은 = "+ product);
 		sqlSession.insert("ProductMapper.addProduct", product);
+		
 	}		
 
 	public Product getProduct(int prodNo) throws Exception {
@@ -52,9 +53,9 @@ public class ProductDaoImpl implements ProductDao{
 		sqlSession.update("ProductMapper.updateProduct", product);
 	}
 	
-	public List<Product> getProductList(Search search) throws Exception {
-		System.out.println("ProductDaoImpl에서 getProductList 실행됨");
-		return sqlSession.selectList("ProductMapper.getProductList", search);
+	public List<Product> getList(Search search) throws Exception {
+		System.out.println("ProductDaoImpl에서 getList 실행됨");
+		return sqlSession.selectList("ProductMapper.getList", search);
 	}
 
 	// 게시판 Page 처리를 위한 전체 Row(totalCount)  return

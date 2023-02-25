@@ -62,12 +62,12 @@
 
 // 검색 / page 두가지 경우 모두 Form 전송을 위해 JavaScrpt 이용  
 
-	function fncGetProductList(currentPage) {
+	function fncGetList(currentPage) {
 		document.getElementById("currentPage").value = currentPage;
    		document.detailForm.submit();	
    	//document => 웹 페이지에 존재하는 HTML 요소에 접근하고자 할 때는 반드시 Document 객체부터 시작해야 한다.
    	//getElementById => HTML 요소 선택 위해 제공되는 메소드 // 해당 아이디의 요소를 선택함.
-   	//detailForm => 변수명(?) 뭔지 잘 모르겠음
+   	//detailForm => form name
    	//submit => 전송
 
 
@@ -80,7 +80,7 @@
 
 <div style="width:98%; margin-left:10px;">
 
-<form name="detailForm" action="/listProduct.do?menu=manage" method="post">
+<form name="detailForm" action="/listProduct.do?menu=${menu}" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -135,7 +135,7 @@
 					<td width="17" height="23"><img src="/images/ct_btnbg01.gif" width="17" height="23"></td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
 					<%--<a href="javascript:fncGetProductList('<%=search.getCurrentPage()%>');">검색</a> --%>
-						<a href="javascript:fncGetProductList('${ search.currentPage }');">검색</a>
+						<a href="javascript:fncGetList('${ search.currentPage }');">검색</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23">
@@ -246,8 +246,10 @@
 			<% }else{ %>
 					<a href="javascript:fncGetProductList('<%=resultPage.getEndUnitPage()+1%>')">이후 ▶</a>
 			<% } %> --%>
-		<jsp:include page="../common/pageNavigator.jsp?uri=${ uri }"/>
-			
+		<%--###### pageNavigator if문 돌려보기 실패 ######
+ 		<jsp:include page="../common/pageNavigator.jsp?uri=${ uri }"/>
+		--%>	
+		<jsp:include page="../common/pageNavigator.jsp"/>
     	</td>
 	</tr>
 </table>
